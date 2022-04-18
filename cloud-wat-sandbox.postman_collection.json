@@ -1,0 +1,135 @@
+{
+	"info": {
+		"_postman_id": "17c9f11f-8efe-4df5-90f1-79c01d7871c2",
+		"name": "cloud-wat-sandbox",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "event-consequences",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"path\": \"dolly\",\r\n    \"source\": \"oh yeah......\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/event/:plugin",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"event",
+						":plugin"
+					],
+					"variable": [
+						{
+							"key": "plugin",
+							"value": "consequences"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "event-hec-ras",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"plugin\": \"hec-ras\",\r\n    \"basepath\": \"/home/slawler/workbench/repos/go-wat/sample-data/Muncie\",\r\n    \"projectfile\": \"/home/slawler/workbench/repos/go-wat/sample-data/Muncie/Muncie.prj\",\r\n    \"planfile\": \"/home/slawler/workbench/repos/go-wat/sample-data/Muncie/Muncie.p04\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/event/:plugin",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"event",
+						":plugin"
+					],
+					"variable": [
+						{
+							"key": "plugin",
+							"value": "hec-ras"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "event-hydro-scalar",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"path\": \"hello\",\r\n    \"params\": \"dolly!\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/event/:plugin",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"event",
+						":plugin"
+					],
+					"variable": [
+						{
+							"key": "plugin",
+							"value": "hydro-scalar"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "job",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/job?config=/app/s3-bucket/job-manifest.yaml",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"job"
+					],
+					"query": [
+						{
+							"key": "config",
+							"value": "/app/s3-bucket/job-manifest.yaml"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

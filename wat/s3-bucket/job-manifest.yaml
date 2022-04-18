@@ -1,0 +1,47 @@
+version: '0.1'
+
+job:
+  config:
+    bucket: /app
+    prefix_in: s3-bucket/sample-payloads
+    prefix_out: s3-bucket/sample-outputs
+    details:
+      - event_type: deterministic
+      - realizations: 1
+      - lifecycles: 1
+      - realization_seed: 1234
+      - event_seed: 1234
+
+  plugins:
+    - plugin:
+        name: hydro-scalar
+        payload: hsm.json
+        depends on:
+          - hydro-scalar
+
+    - plugin:
+        name: hec-ras
+        payload: ras.json
+        depends on:
+          - hydro-scalar
+
+    - plugin:
+        name: consequences
+        payload: consequences.json
+        depends on:
+          - hydro-scalar
+          - hec-ras
+
+    - plugin:
+        name: hydra-analyzer
+        payload: hydra-analyzer.json
+        depends on:
+          - hydro-scalar
+          - hec-ras
+
+    - plugin:
+        name: post-processor
+        payload: post-processor.json
+        depends on:
+          - hydra-analyzer
+          - consequences

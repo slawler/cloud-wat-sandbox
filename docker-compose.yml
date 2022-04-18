@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  sqs:
+    container_name: sqs
+    image: roribio16/alpine-sqs
+    ports:
+      - '9324:9324'
+      - '9325:9325'
+    volumes:
+      - ./sqs-emulator:/opt/custom
+    env_file:
+      - ./.env
+
+  wat:
+    container_name: wat
+    build:
+      context: ./wat
+      target: dev
+    depends_on:
+      - sqs
+    volumes:
+      - ./wat:/app
+    ports:
+      - 5000:5000
+    env_file:
+      - ./.env
+
+  lambda:
+    container_name: lambda
+    build:
+      context: ./lambda-emulator
+      target: dev
+    depends_on:
+      - sqs-emulator
+      - wat
+    volumes:
+      - ./lambda-emulator:/app
+    env_file:
+      - ./.env

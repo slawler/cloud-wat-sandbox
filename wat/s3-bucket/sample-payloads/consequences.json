@@ -1,0 +1,6 @@
+{
+  "plugin": "consequences",
+  "name": "Muncie",
+  "file": "nsi.gpkg",
+  "terrain": "Munice.terrain"
+}
